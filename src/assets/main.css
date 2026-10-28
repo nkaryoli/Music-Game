@@ -1,0 +1,158 @@
+@import './base.css';
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: var(--color-text);
+  margin: 0;
+  background-color: var(--color-bg);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Base común */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 25px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  filter: brightness(1.12);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: 3px solid #EDE6AD;
+  outline-offset: 4px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* 1. Principal: jugar ahora */
+.btn-primary {
+  background: linear-gradient(
+    115deg,
+    #B306CD 0%,
+    #8D12F2 50%,
+    #5E24FF 100%
+  );
+  border-color: #D02AFF;
+  /* border-radius: 999px; */
+  box-shadow:
+    0 5px 18px rgb(179 6 205 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 20%);
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow:
+    0 8px 28px rgb(179 6 205 / 50%),
+    0 0 12px rgb(179 6 205 / 25%);
+}
+
+/* 2. Secundario: reglas, volver, navegación */
+.btn-secondary {
+  background: linear-gradient(
+    115deg,
+    #4392FE 0%,
+    #3157F5 100%
+  );
+  border-color: #35C8FF;
+  box-shadow: 0 5px 18px rgb(67 146 254 / 25%);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  box-shadow: 0 8px 26px rgb(67 146 254 / 45%);
+}
+
+/* 3. Confirmación y acciones positivas */
+.btn-success {
+  background: linear-gradient(
+    115deg,
+    #18FF2D 0%,
+    #00C96B 100%
+  );
+  color: #102013;
+  border-color: #75FF8A;
+  box-shadow: 0 5px 18px rgb(24 255 45 / 22%);
+}
+
+/* 4. Botón especial: ranking y premios */
+.btn-special {
+  background: linear-gradient(
+    115deg,
+    #763676 0%,
+    #34203F 100%
+  );
+  border-color: #EDE6AD;
+  color: #EDE6AD;
+  box-shadow: 0 4px 16px rgb(237 230 173 / 12%);
+}
+
+/* 5. Respuestas del concurso */
+.btn-answer {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  background: linear-gradient(
+    115deg,
+    #34203F 0%,
+    #24152F 100%
+  );
+  border: 1px solid #763676;
+}
+
+.btn-answer:hover:not(:disabled) {
+  border-color: #B306CD;
+  box-shadow: 0 0 18px rgb(179 6 205 / 25%);
+}
+
+/* Estados de las respuestas */
+.btn-answer--correct {
+  background: linear-gradient(115deg, #18FF2D, #00A95A);
+  color: #102013;
+  border-color: #18FF2D;
+  box-shadow: 0 0 20px rgb(24 255 45 / 25%);
+}
+
+.btn-answer--incorrect {
+  background: linear-gradient(115deg, #FF4D67, #BD174D);
+  color: #fff;
+  border-color: #FF7185;
+}
+
+/* Accesibilidad: reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+
+  .btn:hover:not(:disabled),
+  .btn:active:not(:disabled) {
+    transform: none;
+  }
+}

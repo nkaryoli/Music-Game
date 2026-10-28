@@ -1,0 +1,58 @@
+
+:root {
+  /* Paleta de marca */
+  --color-primary: #B306CD;
+  --color-secondary: #763676;
+  --color-accent: #4392FE;
+  --color-highlight: #18FF2D;
+  --color-warm: #EDE6AD;
+
+  /* Fondos */
+  --color-bg: #170F1B;
+  --color-bg-surface: #261C2B;
+  --color-bg-elevated: #34263A;
+
+  /* Textos */
+  --color-text: #F8F5FA;
+  --color-text-muted: #C8BCCF;
+  --color-text-on-light: #201727;
+
+  /* Bordes y estados */
+  --color-border: #4C3B52;
+  --color-success: #18FF2D;
+  --color-error: #FF4D67;
+  --color-warning: #EDE6AD;
+  --color-info: #4392FE;
+
+  /* Botones */
+  --color-button-primary: #B306CD;
+  --color-button-primary-hover: #8F05A5;
+  --color-button-secondary: #4392FE;
+
+  /* Efectos */
+  --shadow-card: 0 8px 24px rgb(0 0 0 / 25%);
+  --shadow-glow-primary: 0 0 18px rgb(179 6 205 / 25%);
+  --shadow-glow-accent: 0 0 18px rgb(67 146 254 / 25%);
+
+  /* Bordes y espaciado */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Transiciones */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
