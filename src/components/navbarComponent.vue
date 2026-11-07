@@ -9,8 +9,8 @@ const currentPath = computed(() => route.path);
 </script>
 
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-3.5 flex items-center justify-center backdrop-blur-3xl shadow-lg shadow-sonic-bg/50 bg-sonic-surface/40 transition-all">
-    <div class="flex items-center justify-between w-full max-w-7xl">
+  <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center backdrop-blur-3xl shadow-lg shadow-sonic-bg/50 bg-sonic-surface/40 transition-all">
+    <div class="flex items-center justify-between w-full max-w-7xl px-4 md:px-8 py-3.5">
 
     <RouterLink to="/" class="flex items-center gap-3 group">
       <div class="relative w-12 h-12 rounded-full bg-linear-to-br from-sonic-fuchsia to-sonic-violet p-0.5 shadow-lg shadow-sonic-fuchsia/30 group-hover:shadow-sonic-fuchsia/50 transition-all">
@@ -77,5 +77,4 @@ const currentPath = computed(() => route.path);
 </template>
 
 <style scoped>
-/* Transición suave para enlaces */
 </style>
