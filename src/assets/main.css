@@ -1,158 +1,117 @@
-@import './base.css';
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap');
 
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Colores de Sonic Lumina */
+  --color-sonic-bg: #0c0714;
+  --color-sonic-nocturne: #12091f;
+  --color-sonic-surface: #16111f;
+  --color-sonic-container: #231d2b;
+  --color-sonic-container-high: #2e2736;
+  --color-sonic-text: #eadef3;
+  --color-sonic-muted: #9f8a9d;
+
+  /* Acentos y Neones */
+  --color-sonic-fuchsia: #c026d3;
+  --color-sonic-violet: #7c3aed;
+  --color-sonic-cyan: #06b6d4;
+  --color-sonic-mint: #10b981;
+  --color-sonic-crimson: #ef4444;
+  --color-sonic-gold: #f59e0b;
+}
+
+/* Reseteo base */
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: var(--color-text);
+  font-family: var(--font-sans);
+  background-color: #0c0714;
+  color: #eadef3;
   margin: 0;
-  background-color: var(--color-bg);
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-a {
-  text-decoration: none;
+/* Capa 1: Paneles y Listas de Cristal */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Base común */
-.btn {
+/* Capa 2: Tarjetas Activas y Modales (Mayor profundidad) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Botón CTA Primario Neón */
+.btn-neon-primary {
+  background: linear-gradient(135deg, #c026d3 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 0 24px -4px rgba(192, 38, 211, 0.5);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 13px 25px;
-  border: 1px solid transparent;
-  border-radius: 14px;
-  color: #fff;
-  font: inherit;
-  font-weight: 700;
-  letter-spacing: 0.2px;
+  gap: 0.5rem;
+  border: none;
   cursor: pointer;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    filter 180ms ease;
 }
 
-.btn:hover:not(:disabled) {
-  transform: translateY(-3px);
-  filter: brightness(1.12);
+.btn-neon-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px 0 rgba(192, 38, 211, 0.7);
+  filter: brightness(1.1);
 }
 
-.btn:active:not(:disabled) {
-  transform: translateY(0) scale(0.98);
+/* Botón Secundario de Cristal */
+.btn-glass-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  color: #eadef3;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
 }
 
-.btn:focus-visible {
-  outline: 3px solid #EDE6AD;
-  outline-offset: 4px;
+.btn-glass-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
 }
 
-.btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+/* Resplandores de estado */
+.glow-success {
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.45);
 }
 
-/* 1. Principal: jugar ahora */
-.btn-primary {
-  background: linear-gradient(
-    115deg,
-    #B306CD 0%,
-    #8D12F2 50%,
-    #5E24FF 100%
-  );
-  border-color: #D02AFF;
-  /* border-radius: 999px; */
-  box-shadow:
-    0 5px 18px rgb(179 6 205 / 30%),
-    inset 0 1px 0 rgb(255 255 255 / 20%);
+.glow-error {
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.45);
 }
 
-.btn-primary:hover:not(:disabled) {
-  box-shadow:
-    0 8px 28px rgb(179 6 205 / 50%),
-    0 0 12px rgb(179 6 205 / 25%);
+/* Animación sutil de pulso para el disco */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
 }
 
-/* 2. Secundario: reglas, volver, navegación */
-.btn-secondary {
-  background: linear-gradient(
-    115deg,
-    #4392FE 0%,
-    #3157F5 100%
-  );
-  border-color: #35C8FF;
-  box-shadow: 0 5px 18px rgb(67 146 254 / 25%);
-}
-
-.btn-secondary:hover:not(:disabled) {
-  box-shadow: 0 8px 26px rgb(67 146 254 / 45%);
-}
-
-/* 3. Confirmación y acciones positivas */
-.btn-success {
-  background: linear-gradient(
-    115deg,
-    #18FF2D 0%,
-    #00C96B 100%
-  );
-  color: #102013;
-  border-color: #75FF8A;
-  box-shadow: 0 5px 18px rgb(24 255 45 / 22%);
-}
-
-/* 4. Botón especial: ranking y premios */
-.btn-special {
-  background: linear-gradient(
-    115deg,
-    #763676 0%,
-    #34203F 100%
-  );
-  border-color: #EDE6AD;
-  color: #EDE6AD;
-  box-shadow: 0 4px 16px rgb(237 230 173 / 12%);
-}
-
-/* 5. Respuestas del concurso */
-.btn-answer {
-  width: 100%;
-  justify-content: flex-start;
-  text-align: left;
-  background: linear-gradient(
-    115deg,
-    #34203F 0%,
-    #24152F 100%
-  );
-  border: 1px solid #763676;
-}
-
-.btn-answer:hover:not(:disabled) {
-  border-color: #B306CD;
-  box-shadow: 0 0 18px rgb(179 6 205 / 25%);
-}
-
-/* Estados de las respuestas */
-.btn-answer--correct {
-  background: linear-gradient(115deg, #18FF2D, #00A95A);
-  color: #102013;
-  border-color: #18FF2D;
-  box-shadow: 0 0 20px rgb(24 255 45 / 25%);
-}
-
-.btn-answer--incorrect {
-  background: linear-gradient(115deg, #FF4D67, #BD174D);
-  color: #fff;
-  border-color: #FF7185;
-}
-
-/* Accesibilidad: reducir movimiento */
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: none;
-  }
-
-  .btn:hover:not(:disabled),
-  .btn:active:not(:disabled) {
-    transform: none;
-  }
+.animate-pulse-ring {
+  animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
