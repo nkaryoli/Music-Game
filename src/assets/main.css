@@ -54,7 +54,7 @@ body {
 
 /* Botón CTA Primario Neón */
 .btn-neon-primary {
-  background: linear-gradient(135deg, #c026d3 0%, #7c3aed 100%);
+  background: linear-gradient(90deg, #c026d3 0%, #792bff 60%, #374bfd  100%);
   color: #ffffff;
   font-weight: 700;
   border-radius: 9999px;
@@ -68,20 +68,38 @@ body {
   cursor: pointer;
 }
 
-.btn-neon-primary:hover {
-  transform: translateY(-2px);
+.btn-neon-primary-cyan {
+  background: linear-gradient(90deg, #c026d3 0%, #792bff 60%, #374bfd 80%, #06b6d4 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 0 24px -4px rgba(192, 38, 211, 0.5);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-neon-primary:hover, .btn-neon-primary-cyan:hover {
   box-shadow: 0 0 32px 0 rgba(192, 38, 211, 0.7);
   filter: brightness(1.1);
 }
 
+.btn-neon-primary-cyan:hover {
+  transform: translateY(-2px);
+}
 /* Botón Secundario de Cristal */
 .btn-glass-secondary {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(35, 29, 43, 0.589);
+  box-shadow: 0 0 24px 0 rgba(12, 7, 20, 0.541);
   backdrop-filter: blur(12px);
   color: #eadef3;
   font-weight: 600;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
   transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
@@ -91,9 +109,10 @@ body {
 }
 
 .btn-glass-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(35, 29, 43, 0.8);
   border-color: rgba(255, 255, 255, 0.35);
   transform: translateY(-2px);
+  box-shadow: 0 0 24px 0 rgba(237, 122, 252, 0.3);
 }
 
 /* Resplandores de estado */
