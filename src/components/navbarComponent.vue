@@ -1,122 +1,81 @@
-<template>
-  <header>
-    <div class="logo-container">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="45" height="45" />
-      <h1>Adivina la canción</h1>
-    </div>
+<script setup lang="ts">
+import { RouterLink, useRoute } from 'vue-router';
+import { computed } from 'vue';
 
-    <nav>
-      <RouterLink to="/">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-house preview-icon"
-        >
-          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
-          <path
-            d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-          />
-        </svg>
-        Home</RouterLink
+const route = useRoute();
+
+// Detecta la ruta activa para aplicar el estilo de cápsula iluminada
+const currentPath = computed(() => route.path);
+</script>
+
+<template>
+  <header class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-3.5 flex items-center justify-center backdrop-blur-3xl shadow-lg shadow-sonic-bg/50 bg-sonic-surface/40 transition-all">
+    <div class="flex items-center justify-between w-full max-w-7xl">
+
+    <RouterLink to="/" class="flex items-center gap-3 group">
+      <div class="relative w-12 h-12 rounded-full bg-linear-to-br from-sonic-fuchsia to-sonic-violet p-0.5 shadow-lg shadow-sonic-fuchsia/30 group-hover:shadow-sonic-fuchsia/50 transition-all">
+        <div class="w-full h-full bg-sonic-surface rounded-full flex items-center justify-center overflow-hidden">
+          <img src="@/assets/logo2.png" alt="" class="w-12 text-sonic-fuchsia group-hover:scale-110 transition-transform">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-lg md:text-xl font-bold tracking-tight text-white group-hover:text-sonic-text transition-colors">
+          Adivina la Canción
+        </span>
+        <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-full bg-sonic-fuchsia/20 text-sonic-fuchsia border border-sonic-fuchsia/30">
+          PRO
+        </span>
+      </div>
+    </RouterLink>
+
+    <nav class="hidden sm:flex items-center gap-1 p-1.5 rounded-full bg-sonic-surface  backdrop-blur-md shadow-inner">
+      <RouterLink
+        to="/"
+        class="px-5 py-1.5 rounded-full text-sm font-semibold transition-all duration-300"
+        :class="currentPath === '/' 
+          ? 'bg-linear-to-r from-sonic-fuchsia to-sonic-violet text-white shadow-md shadow-sonic-fuchsia/40' 
+          : 'text-sonic-muted hover:text-white hover:bg-white/6'"
       >
-      <RouterLink to="/play">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-play preview-icon"
-        >
-          <path
-            d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"
-          />
-        </svg>
+        Inicio
+      </RouterLink>
+
+      <RouterLink
+        to="/play"
+        class="px-5 py-1.5 rounded-full text-sm font-semibold transition-all duration-300"
+        :class="currentPath === '/play' 
+          ? 'bg-linear-to-r from-sonic-fuchsia to-sonic-violet text-white shadow-md shadow-sonic-fuchsia/40' 
+          : 'text-sonic-muted hover:text-white hover:bg-white/6'"
+      >
         Jugar
       </RouterLink>
-      <RouterLink to="/ranking">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-trophy preview-icon"
-        >
-          <path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2" />
-          <path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2" />
-          <path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3" />
-          <path d="M4 22h16" />
-          <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
-          <path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3" />
-        </svg>
+
+      <RouterLink
+        to="/ranking"
+        class="px-5 py-1.5 rounded-full text-sm font-semibold transition-all duration-300"
+        :class="currentPath === '/ranking' 
+          ? 'bg-linear-to-r from-sonic-fuchsia to-sonic-violet text-white shadow-md shadow-sonic-fuchsia/40' 
+          : 'text-sonic-muted hover:text-white hover:bg-white/6'"
+      >
         Ranking
       </RouterLink>
     </nav>
+
+    <div class="flex items-center gap-3">
+      <RouterLink
+        to="/play"
+        class="btn-neon-primary px-5 py-2 text-sm shadow-md"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M5 3l14 9-14 9V3z"/>
+        </svg>
+        <span>Jugar Partida</span>
+      </RouterLink>
+    </div>
+    </div>
   </header>
 </template>
 
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-</script>
-
 <style scoped>
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding: 1rem 2rem;
-  background-color: var(--color-bg);
-  color: white;
-  background-color: var(--color-bg-surface);
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  font-size: 0.7rem;
-}
-
-nav {
-  display: flex;
-  gap: 2.5rem;
-}
-
-a {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: white;
-  text-decoration: none;
-}
-
-svg {
-    font-size: 0.5rem;
-}
-
-a:hover {
-  color: var(--color-highlight);
-  text-decoration: underline var(--color-highlight) 2px; 
-}
-
+/* Transición suave para enlaces */
 </style>
