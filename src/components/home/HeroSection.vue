@@ -17,7 +17,6 @@ import HeroText from './HeroText.vue';
         <LivePlayersIndicator />
       </div>
       <div class="lg:col-span-5 flex justify-center relative">
-        <div class="absolute inset-0 bg-linear-to-tr from-sonic-fuchsia/50 to-sonic-cyan/40 blur-3xl rounded-full scale-90 pointer-events-none"></div>
         <VinilloComponent />
         <div class="absolute -top-2 right-0 ">
             <FloatEqualizerComponent/>

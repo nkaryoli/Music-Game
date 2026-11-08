@@ -3,13 +3,15 @@
 
 <template>
     <div class="relative w-72 sm:w-84 md:w-96 aspect-square rounded-full flex items-center justify-center">
+        <div class="absolute inset-0 m-auto w-80 h-80 rounded-full bg-sonic-soft-pink/10 animate-ping opacity-30"></div>
+        <div class="absolute inset-3 m-auto w-h-86 h-86 rounded-full bg-sonic-cyan/20 blur-xl"></div>
         <div
-            class="absolute inset-0 rounded-full border-3 border-sonic-fuchsia/40 shadow-[0_0_50px_rgba(192,38,211,0.3)] animate-pulse-ring">
+            class="absolute inset-0 m-auto w-58 h-58 rounded-full border-3 border-sonic-fuchsia/40 shadow-[0_0_50px_rgba(192,38,211,0.3)] animate-ping">
         </div>
-        <div class="absolute inset-2.5 rounded-full border-2 border-sonic-cyan/40"></div>
-        <div class="absolute inset-5 rounded-full border border-white/10"></div>
+        <div class="absolute inset-8 m-auto w-48 h-48 rounded-full border-2 border-sonic-cyan/40 animate-ping "></div>
+        <div class="absolute inset-11 rounded-full border-6 border-sonic-fuchsia/40"></div>
         <div
-            class="relative w-64 sm:w-76 md:w-84 h-64 sm:h-76 md:h-84 rounded-full bg-linear-to-b from-[#181124] to-sonic-bg border border-white/15 shadow-2xl flex items-center justify-center overflow-hidden">
+            class="relative w-56 sm:w-64 md:w-72 h-56 sm:h-64 md:h-72 rounded-full bg-linear-to-b from-[#181124] to-sonic-bg border border-white/15 shadow-2xl flex items-center justify-center overflow-hidden">
             <img src="/src/assets/img/hero-img.png" alt="" class="mt-10 scale-110">
             <div
                 class="absolute z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-linear-to-tr from-sonic-fuchsia to-sonic-violet p-1 shadow-lg shadow-sonic-fuchsia/40 flex items-center justify-center">
