@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="relative w-72 sm:w-84 md:w-96 aspect-square rounded-full flex items-center justify-center">->
+    <div class="relative w-72 sm:w-84 md:w-96 aspect-square rounded-full flex items-center justify-center">
         <div
             class="absolute inset-0 rounded-full border-3 border-sonic-fuchsia/40 shadow-[0_0_50px_rgba(192,38,211,0.3)] animate-pulse-ring">
         </div>
