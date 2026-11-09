@@ -1,33 +1,49 @@
-
 :root {
+  --color-sonic-bg: rgb(12, 7, 20);
+  --color-sonic-nocturne: #12091f;
+  --color-sonic-surface: #16111f;
+  --color-sonic-container: #231d2b;
+  --color-sonic-container-high: rgb(46, 39, 54);
+  --color-sonic-text: #eadef3;
+  --color-sonic-muted: #9f8a9d;
+
+  /* Acentos y Neones */
+  --color-sonic-fuchsia: rgb(192, 38, 211);
+  --color-sonic-soft-pink: rgb(253, 123, 255);
+  --color-sonic-violet: #6001d1;
+  --color-sonic-cyan: #06b6d4;
+  --color-sonic-mint: #10b981;
+  --color-sonic-crimson: #ef4444;
+  --color-sonic-gold: #f59e0b;
+
   /* Paleta de marca */
-  --color-primary: #B306CD;
+  --color-primary: #b306cd;
   --color-secondary: #763676;
-  --color-accent: #4392FE;
-  --color-highlight: #18FF2D;
-  --color-warm: #EDE6AD;
+  --color-accent: #4392fe;
+  --color-highlight: #18ff2d;
+  --color-warm: #ede6ad;
 
   /* Fondos */
-  --color-bg: #170F1B;
-  --color-bg-surface: #261C2B;
-  --color-bg-elevated: #34263A;
+  --color-bg: #170f1b;
+  --color-bg-surface: #261c2b;
+  --color-bg-elevated: #34263a;
 
   /* Textos */
-  --color-text: #F8F5FA;
-  --color-text-muted: #C8BCCF;
+  --color-text: #f8f5fa;
+  --color-text-muted: #c8bccf;
   --color-text-on-light: #201727;
 
   /* Bordes y estados */
-  --color-border: #4C3B52;
-  --color-success: #18FF2D;
-  --color-error: #FF4D67;
-  --color-warning: #EDE6AD;
-  --color-info: #4392FE;
+  --color-border: #4c3b52;
+  --color-success: #18ff2d;
+  --color-error: #ff4d67;
+  --color-warning: #ede6ad;
+  --color-info: #4392fe;
 
   /* Botones */
-  --color-button-primary: #B306CD;
-  --color-button-primary-hover: #8F05A5;
-  --color-button-secondary: #4392FE;
+  --color-button-primary: #b306cd;
+  --color-button-primary-hover: #8f05a5;
+  --color-button-secondary: #4392fe;
 
   /* Efectos */
   --shadow-card: 0 8px 24px rgb(0 0 0 / 25%);
