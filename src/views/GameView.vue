@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores/game'
-import GameWelcome from '@/components/game/GameWelcome.vue'
+import GameWelcome from '@/components/game/welcome/GameWelcome.vue'
 import GameActive from '@/components/game/GameActive.vue'
 // import GameResults from '@/components/game/GameResults.vue';
 
