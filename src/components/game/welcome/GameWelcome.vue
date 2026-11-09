@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import RuleCard from './RuleCard.vue'
+import IconCard from '../../IconCard.vue';
 
 const emit = defineEmits<{
   'start-game': [name: string]
@@ -18,49 +20,36 @@ function handleSubmit() {
 
 <template>
   <div class="flex items-center justify-center min-h-[70vh]">
-    <div
-      class="glass-card rounded-3xl p-10 md:p-14 w-full max-w-md flex flex-col items-center gap-8 text-center shadow-2xl"
-    >
-      <!-- Icono Vinilo -->
-      <div
-        class="w-20 h-20 rounded-full bg-gradient-to-tr from-sonic-fuchsia to-sonic-violet flex items-center justify-center shadow-lg shadow-sonic-fuchsia/40"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-10 h-10 text-white"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
-          />
-        </svg>
-      </div>
+    <div class="glass-card rounded-3xl p-10 md:p-14 w-full max-w-3xl flex flex-col items-center gap-8 text-center shadow-2xl"   >
+      <IconCard  variant="gradient" size="large">
+        <template #icon>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-10 h-10 text-white"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+            />
+          </svg>
+        </template>
+      </IconCard>
+    
 
-      <!-- Texto -->
       <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-extrabold text-white">¡Bienvenido!</h1>
-        <p class="text-sonic-muted text-sm leading-relaxed">
+        <h1 class="text-4xl font-extrabold text-white">¡Bienvenido!</h1>
+        <p class="text-sonic-text text-lg ">
           Escucha fragmentos de <strong class="text-white">5 segundos</strong> y adivina la
           canción.<br />
           Tienes <strong class="text-white">15 segundos</strong> para responder cada pregunta.
         </p>
       </div>
 
-      <!-- Reglas Rápidas -->
       <div class="w-full grid grid-cols-3 gap-3 text-center">
-        <div class="glass-panel rounded-xl p-3 flex flex-col gap-1">
-          <span class="text-xl font-extrabold text-sonic-fuchsia">+10</span>
-          <span class="text-[11px] text-sonic-muted">Acierto</span>
-        </div>
-        <div class="glass-panel rounded-xl p-3 flex flex-col gap-1">
-          <span class="text-xl font-extrabold text-sonic-crimson">-5</span>
-          <span class="text-[11px] text-sonic-muted">Fallo</span>
-        </div>
-        <div class="glass-panel rounded-xl p-3 flex flex-col gap-1">
-          <span class="text-xl font-extrabold text-sonic-gold">+0</span>
-          <span class="text-[11px] text-sonic-muted">Tiempo agotado</span>
-        </div>
+        <RuleCard title="+10" subtitle="Acierto" variant="fuchsia" />
+        <RuleCard title="-5" subtitle="Fallo" variant="crimson" />
+        <RuleCard title="+0" subtitle="Tiempo agotado" variant="gold" />
       </div>
 
       <!-- Formulario de Nombre -->
