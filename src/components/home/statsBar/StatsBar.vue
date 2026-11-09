@@ -10,6 +10,7 @@ import StatCard from './StatsCard.vue'
         subtitle="Por partida individual o reto"
         tagline="Modo rápido y dinámico"
         variant="fuchsia"
+        size="medium"
       >
         <template #icon>
           <svg
