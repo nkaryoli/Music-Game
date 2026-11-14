@@ -4,7 +4,6 @@ type ColorVariant = 'fuchsia' | 'crimson' | 'gold'
 interface Props {
   title: string
   subtitle: string
-  // tagline: string
   variant?: ColorVariant
 }
 
