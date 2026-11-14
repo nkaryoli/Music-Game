@@ -2,7 +2,7 @@
 import { useGameStore } from '@/stores/game'
 import GameWelcome from '@/components/game/welcome/GameWelcome.vue'
 import GameActiveSection from '@/components/game/active/GameActiveSection.vue'
-// import GameResults from '@/components/game/GameResults.vue';
+import GameResultsSection from '@/components/game/results/GameResultsSection.vue';
 
 const gameStore = useGameStore()
 
@@ -20,7 +20,7 @@ function handlePlayAgain() {
     <Transition name="fade" mode="out-in">
       <GameWelcome v-if="gameStore.gameStage === 'welcome'" @start-game="handleStartGame" />
       <GameActiveSection v-else-if="gameStore.gameStage === 'playing'" />
-      <GameResults
+      <GameResultsSection
         v-else-if="gameStore.gameStage === 'ended'"
         :player-name="gameStore.playerName"
         :score="gameStore.score"
