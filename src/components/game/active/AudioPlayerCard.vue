@@ -19,7 +19,7 @@ const emit = defineEmits<{
 
 <template>
     <div class="glass-card rounded-3xl p-6 flex flex-col items-center gap-6 h-full">
-        <!-- Badge Superior -->
+
         <div class="flex items-center gap-2 self-start">
             <span class="w-2 h-2 rounded-full animate-pulse"
                 :class="isPlaying ? 'bg-sonic-fuchsia' : 'bg-sonic-muted'"></span>
@@ -28,19 +28,15 @@ const emit = defineEmits<{
             </span>
         </div>
 
-        <!-- Vinilo con Botón Play/Pausa Central -->
         <div class="relative w-52 h-52 flex items-center justify-center">
-            <!-- Anillos exteriores -->
             <div class="absolute inset-0 rounded-full border border-sonic-fuchsia/20"
                 :class="isPlaying ? 'animate-pulse-ring' : ''"></div>
             <div class="absolute inset-3 rounded-full border border-sonic-violet/15"></div>
             <div class="absolute inset-6 rounded-full border border-white/5"></div>
 
-            <!-- Resplandor neón -->
             <div class="absolute inset-8 rounded-full blur-xl transition-opacity duration-500"
                 :class="isPlaying ? 'bg-sonic-fuchsia/25 opacity-100' : 'opacity-0'"></div>
 
-            <!-- Cuerpo del Vinilo -->
             <div
                 class="relative w-40 h-40 rounded-full bg-linear-to-b from-[#1e1430] to-sonic-bg border border-white/10 flex items-center justify-center shadow-2xl">
                 <div class="absolute inset-2 rounded-full border border-white/3"></div>

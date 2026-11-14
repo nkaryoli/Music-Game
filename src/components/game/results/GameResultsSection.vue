@@ -25,7 +25,6 @@ const emit = defineEmits<{
     <div class="flex items-center justify-center min-h-[70vh] py-6">
         <div
             class="glass-card rounded-3xl p-8 md:p-12 w-full max-w-xl flex flex-col items-center gap-7 text-center shadow-2xl relative overflow-hidden">
-            <!-- Luces ambientales de fondo -->
             <div
                 class="pointer-events-none absolute -top-16 -left-16 w-56 h-56 rounded-full bg-sonic-fuchsia/25 blur-3xl">
             </div>
@@ -33,7 +32,6 @@ const emit = defineEmits<{
                 class="pointer-events-none absolute -bottom-16 -right-16 w-56 h-56 rounded-full bg-sonic-cyan/20 blur-3xl">
             </div>
 
-            <!-- Icono de Trofeo Central -->
             <div
                 class="relative w-20 h-20 rounded-full bg-linear-to-tr from-sonic-fuchsia to-sonic-violet flex items-center justify-center shadow-lg shadow-sonic-fuchsia/40">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-sonic-gold drop-shadow-md"
@@ -43,7 +41,6 @@ const emit = defineEmits<{
                 </svg>
             </div>
 
-            <!-- Mensaje de Feedback -->
             <div class="flex flex-col gap-1.5">
                 <h2 class="text-3xl font-extrabold text-white">
                     {{ performanceFeedback.title }}
@@ -53,7 +50,6 @@ const emit = defineEmits<{
                 </p>
             </div>
 
-            <!-- Puntuación Principal -->
             <div
                 class="glass-panel w-full rounded-2xl py-6 px-4 flex flex-col items-center gap-1 border border-white/10">
                 <span class="text-xs uppercase tracking-widest text-sonic-muted font-bold">
@@ -65,7 +61,6 @@ const emit = defineEmits<{
                 <span class="text-xs text-sonic-muted font-medium">de 100 puntos posibles</span>
             </div>
 
-            <!-- Métricas: Aciertos y Precisión -->
             <div class="grid grid-cols-2 gap-3 w-full">
                 <ResultStatCard :value="`${correctCount}/10`" label="Aciertos" variant="mint">
                     <template #icon>
@@ -88,7 +83,6 @@ const emit = defineEmits<{
                 </ResultStatCard>
             </div>
 
-            <!-- Tarjeta de Posición en el Ranking -->
             <div v-if="rankingPosition"
                 class="glass-panel w-full rounded-2xl p-4 flex items-center justify-between border border-sonic-fuchsia/30 shadow-[0_0_20px_rgba(192,38,211,0.15)]">
                 <div class="flex items-center gap-3">
@@ -114,7 +108,6 @@ const emit = defineEmits<{
                     {{ rankingPosition <= 10 ? '¡Top 10!' : 'Sigue practicando' }} </span>
             </div>
 
-            <!-- Botones de Acción -->
             <div class="flex flex-col sm:flex-row gap-3 w-full pt-2">
                 <button class="btn-neon-primary flex-1 py-4 text-base font-bold cursor-pointer"
                     @click="emit('play-again')">

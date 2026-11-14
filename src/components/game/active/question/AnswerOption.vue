@@ -37,7 +37,6 @@ const cardClasses = (): string => {
     <button
         class="w-full max-h-20 rounded-2xl border p-4 flex items-center gap-4 text-left transition-all duration-250 focus:outline-none"
         :class="cardClasses()" :disabled="isAnswered()" @click="emit('selected', option)">
-        <!-- Letra de Opción -->
         <div class="w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-sm shrink-0 transition-colors"
             :class="isAnswered() && option.isCorrect
                     ? 'bg-sonic-mint text-white'
@@ -47,20 +46,15 @@ const cardClasses = (): string => {
                 ">
             {{ optionLetter }}
         </div>
-
         <span class="font-semibold text-sm text-white grow leading-snug">
             {{ option.text }}
         </span>
-
-        <!-- Icono de Estado -->
         <div class="shrink-0 w-5 h-5">
-            <!-- Check verde si es correcta y ya respondido -->
             <svg v-if="isAnswered() && option.isCorrect" xmlns="http://www.w3.org/2000/svg"
                 class="w-5 h-5 text-sonic-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
                 stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12" />
             </svg>
-            <!-- Cruz roja si es la opción seleccionada incorrecta -->
             <svg v-else-if="isAnswered() && isSelected() && !option.isCorrect" xmlns="http://www.w3.org/2000/svg"
                 class="w-5 h-5 text-sonic-crimson" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
