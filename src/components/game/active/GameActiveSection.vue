@@ -20,11 +20,12 @@ function handleNext() {
 function handleToggleAudio() {
   audioStore.togglePlay()
 }
+
 </script>
 
 <template>
   <div class="flex flex-col gap-6 w-full" v-if="gameStore.currentQuestion">
-    <!-- Cabecera con Progreso y Puntuación -->
+
     <GameHeader
       :player-name="gameStore.playerName"
       :score="gameStore.score"
@@ -34,9 +35,8 @@ function handleToggleAudio() {
       :time-left="gameStore.timeLeft"
     />
 
-    <!-- Área Principal: Reproductor + Pregunta -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      <!-- Reproductor de Audio (Izquierda) -->
+
       <div class="lg:col-span-5">
         <AudioPlayerCard
           :is-playing="audioStore.isPlaying"
@@ -47,7 +47,6 @@ function handleToggleAudio() {
         />
       </div>
 
-      <!-- Pregunta y Opciones (Derecha) -->
       <div class="lg:col-span-7">
         <QuestionCard
           :question="gameStore.currentQuestion"

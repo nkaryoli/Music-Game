@@ -17,12 +17,11 @@ const emit = defineEmits<{
 const isSelected = (): boolean => props.selectedOptionId === props.option.id
 const isAnswered = (): boolean => props.answerStatus !== 'idle'
 
-// Clases dinámicas según el estado de respuesta
+
 const cardClasses = (): string => {
     if (!isAnswered()) {
         return 'glass-panel border-white/10 hover:border-sonic-fuchsia/50 hover:bg-white/[0.08] cursor-pointer hover:scale-[1.01] active:scale-[0.99]'
     }
-    // Ya respondido:
     if (props.option.isCorrect) {
         return 'bg-sonic-mint/15 border-sonic-mint/60 glow-success cursor-default'
     }
@@ -31,11 +30,12 @@ const cardClasses = (): string => {
     }
     return 'glass-panel border-white/[0.05] opacity-40 cursor-default'
 }
+
 </script>
 
 <template>
     <button
-        class="w-full rounded-2xl border p-4 flex items-center gap-4 text-left transition-all duration-250 focus:outline-none"
+        class="w-full max-h-20 rounded-2xl border p-4 flex items-center gap-4 text-left transition-all duration-250 focus:outline-none"
         :class="cardClasses()" :disabled="isAnswered()" @click="emit('selected', option)">
         <!-- Letra de Opción -->
         <div class="w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-sm shrink-0 transition-colors"
@@ -43,13 +43,12 @@ const cardClasses = (): string => {
                     ? 'bg-sonic-mint text-white'
                     : isAnswered() && isSelected() && !option.isCorrect
                         ? 'bg-sonic-crimson text-white'
-                        : 'bg-white/[0.08] text-sonic-muted'
+                        : 'bg-white/8 text-sonic-muted'
                 ">
             {{ optionLetter }}
         </div>
 
-        <!-- Texto de la Opción -->
-        <span class="font-semibold text-sm text-white flex-grow leading-snug">
+        <span class="font-semibold text-sm text-white grow leading-snug">
             {{ option.text }}
         </span>
 
