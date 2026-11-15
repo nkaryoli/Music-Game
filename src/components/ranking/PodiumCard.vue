@@ -49,7 +49,7 @@ const config: Record<1 | 2 | 3, {
 </script>
 
 <template>
-    <div class="bg-sonic-container-high/70 hover:bg-sonic-container-high/80 hover:scale-[103%] rounded-2xl p-6 flex flex-col items-center gap-4 text-center transition-all duration-300 relative overflow-hidden"
+    <div class="w-full max-w-md mx-auto bg-sonic-container-high/70 hover:bg-sonic-container-high/80 hover:scale-[103%] rounded-2xl p-6 flex flex-col items-center gap-4 text-center transition-all duration-300 relative overflow-hidden"
         :class="[config[rank].glow, isCurrentPlayer ? 'ring-2 ring-sonic-fuchsia' : '']">
 
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider "

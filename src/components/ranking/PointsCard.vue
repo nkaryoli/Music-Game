@@ -10,11 +10,11 @@ defineProps<Props>();
 </script>
 
 <template>
-    <div class="w-full bg-sonic-surface rounded-4xl pt-2 pb-4 px-6 space-y-1">
+    <div class="w-full bg-sonic-surface rounded-4xl pt-2 pb-4 px-4 space-y-1">
         <div class="flex justify-between items-end">
             <span class="text-xs text-sonic-muted">Puntuación</span>
             <div class="flex items-baseline gap-1">
-                <span class="text-2xl font-bold text-sonic-soft-pink tabular-nums">{{ entry.score }}</span>
+                <span class="text-xl font-bold text-sonic-soft-pink tabular-nums">{{ entry.score }}</span>
                 <span class="text-xs text-sonic-muted font-medium">pts</span>
             </div>
         </div>
