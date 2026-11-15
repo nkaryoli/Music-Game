@@ -4,8 +4,6 @@ Aplicación web interactiva desarrollada con Vue 3 para poner a prueba los conoc
 
 ## Demo
 
-> **Nota:** sustituir los siguientes marcadores por las imágenes reales de la demo cuando estén disponibles.
-
 ### Página de inicio
 
 <!-- PLACEHOLDER: añadir imagen de la página de inicio -->
