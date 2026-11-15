@@ -3,16 +3,18 @@ import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useRankingStore } from '@/stores/ranking'
 import { useGameStore } from '@/stores/game'
+import { useAuthStore } from '@/stores/auth'
 
 const rankingStore = useRankingStore()
 const gameStore = useGameStore()
+const authStore = useAuthStore()
 
 const thirdPlace = computed(() => rankingStore.top10[2] || null)
 
 const firstPlace = computed(() => rankingStore.top10[0] || null)
 
 const playerEntries = computed(() => {
-  if (!gameStore.playerName) return []
+  if (!authStore.isAuthenticated || !gameStore.playerName) return []
   return rankingStore.rankings.filter(
     (e) => e.playerName.toLowerCase() === gameStore.playerName.toLowerCase(),
   )
@@ -51,6 +53,9 @@ const targetPlayerName = computed(() => {
 })
 
 const challengeTitle = computed(() => {
+  if (!authStore.isAuthenticated) {
+    return '¡El podio te espera!'
+  }
   if (isAlreadyInPodium.value) {
     if (currentPlayerRank.value === 1) {
       return '¡Eres el Campeón! 👑'
@@ -64,6 +69,9 @@ const challengeTitle = computed(() => {
 })
 
 const challengeDescription = computed(() => {
+  if (!authStore.isAuthenticated) {
+    return 'Inicia sesión y juega una partida para competir por un puesto en el ranking.'
+  }
   if (currentPlayerRank.value === 1) {
     return 'Defiende tu corona jugando otra partida y marcando un nuevo récord imbatible.'
   }

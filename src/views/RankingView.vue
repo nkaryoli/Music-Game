@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRankingStore } from '@/stores/ranking'
 import { useGameStore } from '@/stores/game'
+import { useAuthStore } from '@/stores/auth'
 import RankingEmpty from '@/components/ranking/RankingEmpty.vue'
 import PodiumComponent from '@/components/ranking/PodiumComponent.vue'
 import RankingHeader from '@/components/ranking/RankingHeader.vue'
@@ -11,13 +12,18 @@ import ChallengeCard from '@/components/ranking/ChallengeCard.vue'
 
 const rankingStore = useRankingStore()
 const gameStore = useGameStore()
+const authStore = useAuthStore()
 
 const top10 = computed(() => rankingStore.top10)
 const podium = computed(() => top10.value.slice(0, 3))
 const restOfTop10 = computed(() => top10.value.slice(3, 10))
 
 function isCurrentPlayer(entryName: string): boolean {
-  return !!gameStore.playerName && entryName.toLowerCase() === gameStore.playerName.toLowerCase()
+  return (
+    authStore.isAuthenticated &&
+    !!gameStore.playerName &&
+    entryName.toLowerCase() === gameStore.playerName.toLowerCase()
+  )
 }
 </script>
 

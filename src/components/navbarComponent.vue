@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { RouterLink, useRoute } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue'
 import { useAuthStore } from '@/stores/auth';
+import { useAudioStore } from '@/stores/audio';
 import AvatarComponent from './AvatarComponent.vue';
 
 const authStore = useAuthStore();
+const audioStore = useAudioStore();
+const router = useRouter()
 const route = useRoute()
 
 const currentPath = computed(() => route.path)
+
+function handleLogout() {
+  audioStore.stopAndUnload()
+  authStore.logout()
+  if (route.path === '/play') {
+    router.push('/login')
+  }
+}
 </script>
 
 <template>
@@ -74,7 +85,7 @@ const currentPath = computed(() => route.path)
 
           <button title="Cerrar Sesión"
             class="w-9 h-9 rounded-full sonic-white/5 hover:bg-sonic-crimson/20 border border-white/10 hover:border-sonic-crimson/40 text-sonic-muted hover:text-sonic-crimson flex items-center justify-center transition-all cursor-pointer"
-            @click="authStore.logout()">
+            @click="handleLogout">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />

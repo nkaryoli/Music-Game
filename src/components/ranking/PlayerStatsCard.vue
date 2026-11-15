@@ -2,13 +2,15 @@
 import { computed } from 'vue'
 import { useGameStore } from '@/stores/game'
 import { useRankingStore } from '@/stores/ranking'
+import { useAuthStore } from '@/stores/auth'
 import AccuracyRing from './AccuracyRing.vue'
 
 const gameStore = useGameStore()
 const rankingStore = useRankingStore()
+const authStore = useAuthStore()
 
 const playerEntries = computed(() => {
-  if (!gameStore.playerName) return []
+  if (!authStore.isAuthenticated || !gameStore.playerName) return []
   return rankingStore.rankings.filter(
     (e) => e.playerName.toLowerCase() === gameStore.playerName.toLowerCase(),
   )
@@ -69,7 +71,7 @@ const avgTime = computed(() => {
       </div>
 
       <span
-        v-if="gameStore.playerName"
+        v-if="authStore.isAuthenticated && gameStore.playerName"
         class="text-xs px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-sonic-text font-medium"
       >
         {{ gameStore.playerName }}
