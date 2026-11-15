@@ -19,7 +19,7 @@ const isAnswered = (): boolean => props.answerStatus !== 'idle'
 
 const cardClasses = (): string => {
   if (!isAnswered()) {
-    return 'glass-panel border-white/10 hover:border-sonic-fuchsia/50 hover:bg-white/[0.08] cursor-pointer hover:scale-[1.01] active:scale-[0.99]'
+    return 'glass-panel border-white/10 hover:border-sonic-fuchsia/50 hover:bg-white/8 cursor-pointer hover:scale-[1.01] active:scale-[0.99]'
   }
   if (props.option.isCorrect) {
     return 'bg-sonic-mint/15 border-sonic-mint/60 glow-success cursor-default'
