@@ -6,11 +6,12 @@ type Size = 'sm' | 'md' | 'lg'
 
 const props = withDefaults(
     defineProps<{
-        variant?: Variant
-        size?: Size
-        label?: string
-        src?: string
-        alt?: string
+        variant?: Variant;
+        size?: Size;
+        label?: string;
+        src?: string;
+        alt?: string;
+        glow?: boolean;
     }>(),
     {
         variant: 'primary',
@@ -18,25 +19,36 @@ const props = withDefaults(
         label: '',
         src: '',
         alt: '',
+        glow: true,
     },
 )
 
-const variants: Record<Variant, string> = {
+const gradients: Record<Variant, string> = {
+    primary: 'from-sonic-fuchsia to-sonic-soft-pink',
+    secondary: 'from-sonic-cyan to-sonic-soft-pink',
+    tertiary: 'from-sonic-violet to-sonic-soft-pink',
+};
+
+const glowEffects: Record<Variant, string> = {
     primary:
-        'from-sonic-fuchsia to-sonic-soft-pink shadow-[0_0_20px_color-mix(in_srgb,var(--color-sonic-fuchsia)_40%,transparent),0_0_50px_color-mix(in_srgb,var(--color-sonic-fuchsia)_28%,transparent),0_0_90px_color-mix(in_srgb,var(--color-sonic-violet)_22%,transparent)]',
+        'shadow-[0_0_20px_color-mix(in_srgb,var(--color-sonic-fuchsia)_40%,transparent),0_0_50px_color-mix(in_srgb,var(--color-sonic-fuchsia)_28%,transparent),0_0_90px_color-mix(in_srgb,var(--color-sonic-violet)_22%,transparent)]',
     secondary:
-        'from-sonic-cyan to-sonic-soft-pink shadow-[0_0_20px_color-mix(in_srgb,var(--color-cyan-500)_40%,transparent),0_0_50px_color-mix(in_srgb,var(--color-cyan-500)_28%,transparent),0_0_90px_color-mix(in_srgb,var(--color-blue-700)_22%,transparent)]',
+        'shadow-[0_0_20px_color-mix(in_srgb,var(--color-cyan-500)_40%,transparent),0_0_50px_color-mix(in_srgb,var(--color-cyan-500)_28%,transparent),0_0_90px_color-mix(in_srgb,var(--color-blue-700)_22%,transparent)]',
     tertiary:
-        'from-sonic-violet to-sonic-soft-pink shadow-[0_0_20px_color-mix(in_srgb,var(--color-sonic-violet)_40%,transparent),0_0_50px_color-mix(in_srgb,var(--color-sonic-violet)_28%,transparent),0_0_90px_color-mix(in_srgb,var(--color-sonic-violet)_22%,transparent)]',
+        'shadow-[0_0_20px_color-mix(in_srgb,var(--color-sonic-violet)_40%,transparent),0_0_50px_color-mix(in_srgb,var(--color-sonic-violet)_28%,transparent),0_0_90px_color-mix(in_srgb,var(--color-sonic-violet)_22%,transparent)]',
 }
 
 const sizes: Record<Size, string> = {
-    sm: 'w-10 h-10 p-1 text-sm',
-    md: 'w-20 h-20 p-1.5 text-xl',
-    lg: 'w-24 h-24 p-1.5 text-3xl',
+    sm: 'w-10 h-10 p-0.5 text-sm',
+    md: 'w-16 h-16 p-1 text-xl',
+    lg: 'w-20 h-20 p-1.5 text-3xl',
 }
 
-const classes = computed(() => [variants[props.variant], sizes[props.size]]);
+const classes = computed(() => [
+    gradients[props.variant],
+    sizes[props.size],
+    props.glow ? glowEffects[props.variant] : '',
+]);
 
 </script>
 
