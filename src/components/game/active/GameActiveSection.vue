@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores/game'
 import { useAudioStore } from '@/stores/audio'
+import { useAuthStore } from '@/stores/auth'
 import GameHeader from './GameHeader.vue'
 import AudioPlayerCard from './AudioPlayerCard.vue'
 import QuestionCard from './QuestionCard.vue'
@@ -8,6 +9,7 @@ import type { AnswerOption } from '@/types/game'
 
 const gameStore = useGameStore()
 const audioStore = useAudioStore()
+const authStore = useAuthStore()
 
 function handleAnswerSelected(option: AnswerOption) {
   gameStore.selectAnswer(option)
@@ -26,6 +28,7 @@ function handleToggleAudio() {
   <div class="flex flex-col gap-6 w-full" v-if="gameStore.currentQuestion">
     <GameHeader
       :player-name="gameStore.playerName"
+      :avatar-path="authStore.currentAvatarPath"
       :score="gameStore.score"
       :current-round="gameStore.currentRoundNumber"
       :total-rounds="10"
