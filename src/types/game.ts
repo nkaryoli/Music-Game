@@ -18,6 +18,7 @@ export type AnswerStatus = 'idle' | 'correct' | 'wrong' | 'timeout'
 export interface RankingEntry {
   id: string
   playerName: string
+  avatarPath?: string
   score: number // Puntos (ej: 70)
   totalQuestions: number // 10
   correctCount: number // ej: 7
