@@ -6,6 +6,7 @@ import ProgressBar from './header/ProgressBar.vue'
 
 interface Props {
   playerName: string
+  avatarPath?: string
   score: number
   currentRound: number
   totalRounds: number
@@ -19,7 +20,7 @@ defineProps<Props>()
 <template>
   <div class="glass-panel rounded-2xl px-6 py-4 flex flex-col gap-3">
     <div class="flex items-center justify-between gap-4">
-      <PlayerBadge :name="playerName" />
+      <PlayerBadge :name="playerName" :avatar-path="avatarPath" />
       <TimerBadge :time-left="timeLeft" />
       <ScoreBadge :score="score" />
     </div>

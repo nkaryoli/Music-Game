@@ -35,6 +35,7 @@ withDefaults(defineProps<Props>(), {
         :variant="isCurrentPlayer ? 'secondary' : 'tertiary'"
         size="sm"
         :glow="isCurrentPlayer"
+        :src="entry.avatarPath"
         :label="entry.playerName.charAt(0).toUpperCase()"
       />
 

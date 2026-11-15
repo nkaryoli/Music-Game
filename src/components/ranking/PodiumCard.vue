@@ -67,6 +67,7 @@ const config: Record<
     <AvatarComponent
       :variant="config[rank].avatarVariant"
       :size="config[rank].avatarSize"
+      :src="entry.avatarPath"
       :label="entry.playerName.charAt(0).toUpperCase()"
     />
 
