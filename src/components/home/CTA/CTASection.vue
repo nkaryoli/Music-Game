@@ -4,16 +4,19 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-
     <div
       class="relative overflow-hidden rounded-3xl glass-card p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8"
     >
+      <div
+        class="pointer-events-none absolute -top-16 -left-16 w-72 h-72 rounded-full bg-sonic-fuchsia/20 blur-3xl"
+      ></div>
+      <div
+        class="pointer-events-none absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-sonic-violet/20 blur-3xl"
+      ></div>
 
-      <div class="pointer-events-none absolute -top-16 -left-16 w-72 h-72 rounded-full bg-sonic-fuchsia/20 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-sonic-violet/20 blur-3xl"></div>
-
-      <div class="relative z-10 flex flex-col items-center md:items-start text-center md:text-left gap-4">
-
+      <div
+        class="relative z-10 flex flex-col items-center md:items-start text-center md:text-left gap-4"
+      >
         <span
           class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sonic-fuchsia/15 border border-sonic-fuchsia/30 text-sonic-fuchsia text-xs font-extrabold uppercase tracking-widest"
         >

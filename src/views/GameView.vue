@@ -2,7 +2,7 @@
 import { useGameStore } from '@/stores/game'
 import GameWelcome from '@/components/game/welcome/GameWelcome.vue'
 import GameActiveSection from '@/components/game/active/GameActiveSection.vue'
-import GameResultsSection from '@/components/game/results/GameResultsSection.vue';
+import GameResultsSection from '@/components/game/results/GameResultsSection.vue'
 
 const gameStore = useGameStore()
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import IconCard from '../../IconCard.vue';
+import IconCard from '../../IconCard.vue'
 
-type ColorVariant = 'fuchsia' | 'violet' | 'cyan' | 'gradient';
+type ColorVariant = 'fuchsia' | 'violet' | 'cyan' | 'gradient'
 type Size = 'small' | 'medium' | 'large'
 
 interface Props {
@@ -14,13 +14,10 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   variant: 'fuchsia',
-  size: 'medium'
+  size: 'medium',
 })
 
-const variantStyles: Record<
-  ColorVariant,
-  { hoverBorder: string; taglineColor: string; }
-> = {
+const variantStyles: Record<ColorVariant, { hoverBorder: string; taglineColor: string }> = {
   fuchsia: {
     hoverBorder: 'hover:border-sonic-violet/30',
     // iconBg: 'bg-sonic-violet/25',
@@ -48,7 +45,7 @@ const variantStyles: Record<
     // iconColor: 'text-white',
     taglineColor: 'text-white',
     // neonGlow: 'shadow-[0_0_30px_rgba(192,38,211,0.39)]',
-  }
+  },
 }
 </script>
 
