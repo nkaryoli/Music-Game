@@ -5,16 +5,18 @@ import { songsData } from '@/data/songs'
 import { shuffleArray } from '@/utils/shuffle'
 import { useAudioStore } from './audio'
 import { useRankingStore } from './ranking'
+import { useAuthStore } from './auth'
 
 const TOTAL_QUESTIONS_PER_GAME = 10
 const SECONDS_TO_ANSWER = 15 // Tiempo límite para contestar cada pregunta
 
 export const useGameStore = defineStore('game', () => {
-  const audioStore = useAudioStore()
-  const rankingStore = useRankingStore()
+  const audioStore = useAudioStore();
+  const rankingStore = useRankingStore();
+  const authStore = useAuthStore();
 
-  // Estados de la partida
-  const playerName = ref('')
+  // Estados de la partida (si hay usuario autenticado, inicializa con su nombre)
+  const playerName = ref(authStore.currentUsername);
   const gameStage = ref<'welcome' | 'playing' | 'ended'>('welcome')
   const currentRoundIndex = ref(0) // 0 a 9
   const selectedQuestions = ref<SongQuestion[]>([])
@@ -104,7 +106,14 @@ export const useGameStore = defineStore('game', () => {
    * Inicia una nueva partida con 10 canciones aleatorias de las 20 disponibles
    */
   function startGame(name: string) {
-    playerName.value = name.trim()
+    const finalName = name.trim() || authStore.currentUsername || 'Jugador';
+    playerName.value = finalName;
+
+    // Si no estaba logueado, lo logueamos automáticamente con ese nombre
+    if (!authStore.isAuthenticated) {
+      authStore.login(finalName);
+    }
+
     score.value = 0
     correctCount.value = 0
     wrongCount.value = 0
@@ -213,6 +222,7 @@ export const useGameStore = defineStore('game', () => {
     // Guardamos en el ranking persistente de localStorage
     const savedEntry = rankingStore.addEntry({
       playerName: playerName.value || 'Jugador',
+      avatarPath: authStore.currentAvatarPath,
       score: score.value,
       totalQuestions: TOTAL_QUESTIONS_PER_GAME,
       correctCount: correctCount.value,
@@ -228,11 +238,9 @@ export const useGameStore = defineStore('game', () => {
    * Reinicia el estado para volver a la pantalla de bienvenida o jugar de nuevo
    */
   function resetGame() {
-    stopQuestionTimer()
-    audioStore.stopAndUnload()
-    gameStage.value = 'welcome'
-    selectedOptionId.value = null
-    answerStatus.value = 'idle'
+    stopQuestionTimer();
+    audioStore.stopAndUnload();
+    startGame(playerName.value || authStore.currentUsername || 'Jugador');
   }
 
   return {
