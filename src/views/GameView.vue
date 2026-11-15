@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { useGameStore } from '@/stores/game'
-import GameWelcome from '@/components/game/welcome/GameWelcome.vue'
+import { useAuthStore } from '@/stores/auth';
 import GameActiveSection from '@/components/game/active/GameActiveSection.vue'
 import GameResultsSection from '@/components/game/results/GameResultsSection.vue'
 
 const gameStore = useGameStore()
+const authStore = useAuthStore();
 
-function handleStartGame(name: string) {
-  gameStore.startGame(name)
-}
+onMounted(() => {
+  if (gameStore.gameStage === 'welcome' && authStore.isAuthenticated) {
+    gameStore.startGame(authStore.currentUsername);
+  }
+});
 
 function handlePlayAgain() {
   gameStore.resetGame()
@@ -18,8 +22,7 @@ function handlePlayAgain() {
 <template>
   <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     <Transition name="fade" mode="out-in">
-      <GameWelcome v-if="gameStore.gameStage === 'welcome'" @start-game="handleStartGame" />
-      <GameActiveSection v-else-if="gameStore.gameStage === 'playing'" />
+      <GameActiveSection v-if="gameStore.gameStage === 'playing'" />
       <GameResultsSection
         v-else-if="gameStore.gameStage === 'ended'"
         :player-name="gameStore.playerName"
