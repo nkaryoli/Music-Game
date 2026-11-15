@@ -29,7 +29,7 @@ const variantStyles: Record<ColorVariant, { hoverBorder: string; titleColor: str
 
 <template>
   <div
-    class="bg-sonic-surface rounded-xl p-3 flex flex-col gap-1"
+    class="bg-sonic-surface/70 rounded-xl p-3 flex flex-col gap-1"
     :class="variantStyles[variant].hoverBorder"
   >
     <span class="text-3xl font-extrabold" :class="variantStyles[variant].titleColor">{{
