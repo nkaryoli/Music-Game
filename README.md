@@ -1,138 +1,152 @@
-# Music Game
+# Adivina la Canción
 
+Aplicación web interactiva desarrollada con Vue 3 para poner a prueba los conocimientos musicales del jugador. La aplicación reproduce fragmentos de canciones, registra las respuestas y mantiene una clasificación local con las mejores puntuaciones.
 
-## Project Setup
+## Demo
+
+> **Nota:** sustituir los siguientes marcadores por las imágenes reales de la demo cuando estén disponibles.
+
+### Página de inicio
+
+<!-- PLACEHOLDER: añadir imagen de la página de inicio -->
+![Página de inicio](public/demo/home-demo.png)
+
+### Login y selección de avatar
+
+<!-- PLACEHOLDER: añadir imagen del formulario de login y selección de avatar -->
+![Login y selección de avatar](public/demo/login-demo.png)
+
+### Partida
+
+<!-- PLACEHOLDER: añadir imagen de una partida en curso -->
+![Partida en curso](public/demo/correct-answer-demo.png)
+
+![Partida en curso 2](public/demo/incorrect-answer-demo.png)
+
+### Ranking
+
+<!-- PLACEHOLDER: añadir imagen de la vista de ranking -->
+![Ranking](public/demo/top-ranking-demo.png)
+
+## Funcionalidades
+
+- Landing page con información del juego y acceso a la partida.
+- Login mediante nombre de jugador.
+- Selección de uno de los cuatro avatares disponibles.
+- Avatar asociado al usuario y mostrado en la navegación, la partida y el ranking.
+- Diez preguntas por partida, seleccionadas aleatoriamente de un catálogo de canciones.
+- Reproducción de fragmentos de cinco segundos aleatorios mediante Howler.js.
+- Temporizador de quince segundos para responder cada pregunta.
+- Sistema de puntuación:
+  - `+10` puntos por respuesta correcta.
+  - `-5` puntos por respuesta incorrecta.
+  - `0` puntos si se agota el tiempo.
+- Pantalla de resultados con precisión, aciertos y posición obtenida.
+- Ranking con las diez mejores puntuaciones.
+- Desempate por tiempo total de escucha y fecha de la partida.
+- Persistencia de sesión y ranking mediante `localStorage`.
+- El ranking puede consultarse como invitado.
+- La partida requiere autenticación.
+- El logout detiene y descarga el audio activo antes de cerrar la sesión.
+
+## Tecnologías
+
+- [Vue 3](https://vuejs.org/) con Composition API y `<script setup>`.
+- [TypeScript](https://www.typescriptlang.org/).
+- [Vite](https://vite.dev/).
+- [Pinia](https://pinia.vuejs.org/) para el estado global.
+- [Vue Router](https://router.vuejs.org/) para la navegación.
+- [Howler.js](https://howlerjs.com/) para la reproducción de audio.
+- [Tailwind CSS](https://tailwindcss.com/) para los estilos.
+
+## Requisitos
+
+- Node.js `22.18+` o `24.12+`.
+- npm.
+
+## Instalación
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Comandos disponibles
+
+### Servidor de desarrollo
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+La aplicación estará disponible en la URL que muestre Vite, normalmente `http://localhost:5173`.
+
+### Comprobación de tipos
+
+```sh
+npm run type-check
+```
+
+### Compilación para producción
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Previsualización de producción
+
+```sh
+npm run preview
+```
+
+### Lint
 
 ```sh
 npm run lint
 ```
 
+## Estructura principal
 
-# Plan de Acción por Fases
+```text
+src/
+├── assets/
+│   └── img/                 # Avatares e imágenes de la interfaz
+├── components/              # Componentes reutilizables
+│   ├── game/                # Partida y resultados
+│   ├── home/                # Página de inicio
+│   └── ranking/             # Podio, tabla y estadísticas
+│   └── login/               # Login
+├── data/
+│   └── songs.ts             # Catálogo de canciones
+├── router/
+│   └── index.ts             # Rutas y protección de la partida
+├── stores/
+│   ├── audio.ts             # Estado y ciclo de vida de Howler
+│   ├── auth.ts              # Sesión y avatar del usuario
+│   ├── game.ts              # Estado de la partida
+│   └── ranking.ts           # Clasificación persistente
+├── types/
+│   └── game.ts              # Tipos del dominio
+└── views/                   # Vistas asociadas a las rutas
+```
 
+## Rutas
 
+| Ruta | Descripción | Acceso |
+| --- | --- | --- |
+| `/` | Página de inicio | Público |
+| `/login` | Login y selección de avatar | Público |
+| `/play` | Partida musical | Requiere autenticación |
+| `/ranking` | Clasificación global | Público |
 
-### Fase 1: Dependencias y Banco de Datos
+## Persistencia
 
+La aplicación no necesita un backend para funcionar. Los datos se guardan en el navegador:
 
+- `music_game_auth_user`: usuario autenticado, nombre, avatar y fecha de login.
+- `concurso_musical_rankings`: partidas registradas en el ranking.
 
-1. **Instalar Howler**: Instalar howler y sus declaraciones TypeScript @types/howler en Music-Game.
+Para empezar con datos limpios, se pueden eliminar estas claves desde las herramientas de desarrollo del navegador.
 
-2. **Dataset de 20 Canciones (songs.json / songs.ts):**
-* Crear un archivo con 20 canciones populares (Adele, Queen, Michael Jackson, etc.) asociadas a los audios mp3 (copiaremos las pistas de reproductor-musical a Music-Game/public/music o src/assets/music).
-* Cada canción incluirá: id, title, artist, audioSrc, options: \[{ text, isCorrect }].
+## Licencia
 
-
-
-### Fase 2: Stores de Pinia (Gestión Centralizada)
-
-
-
-1. **useRankingStore:**
-* Lectura y escritura reactiva en localStorage.
-* Lógica de ordenación: puntos descendente → menor tiempo total de escucha → fecha más reciente.
-* Función para registrar nueva puntuación y determinar si entró al Top 10.
-
-
-
-2. **useAudioStore:**
-* Integración con Howler.js.
-* Reproducción automática del fragmento de 5 segundos con cálculo de offset aleatorio: seek(randomStart) → temporizador de 5s → pausa y reseteo.
-* Cálculo del tiempo acumulado de reproducción para desempatar.
-
-
-
-3. **useGameStore:**
-* Gestión de rondas (1 a 10), selección de 10 canciones aleatorias.
-* Puntuación (+10 / -5 / 0), estado de la pregunta (unanswered, correct, wrong, timeout).
-
-### 
-
-### Fase 3: Landing Page (HomeView)
-
-
-
-1. Ajustar el diseño actual de HomeView.vue para que coincida exactamente con las capturas de la práctica:
-* Banner superior "¡Nuevo Juego! ¿Cuánto sabes de música?".
-* Sección de estadísticas: 10 preguntas | 100 puntos máx | 5s por canción.
-* Tarjetas explicativas (Escucha, Adivina, Compite).
-* Bloque CTA final animado con enlace a /play.
-
-
-
-### Fase 4: Concurso (GameView)
-
-1. Pantalla Inicial de Bienvenida:
-* Formulario para ingresar el nombre del jugador antes de iniciar la partida.
-
-
-
-2. Interfaz de Juego:
-* GameHeader: muestra el nombre del jugador, puntos acumulados y la barra de progreso (ej. "Pregunta 3 de 10 - 30%").
-* Reproductor visual: botón central animado de reproducción y barra indicadora de 5 segundos.
-* Opciones de respuesta: botones interactivos con transiciones y feedback visual inmediato (verde / rojo con iconos de check y cruz).
-* Temporizador de respuesta que active el estado de tiempo agotado si el usuario no contesta.
-* Botón "Siguiente Pregunta".
-
-
-
-3. Pantalla de Resumen Final:
-* Tarjeta de feedback según puntuación ("¡Excelente! Tienes un gran conocimiento musical").
-* Resumen de aciertos, precisión en % y posición alcanzada en el ranking.
-* Botón "Jugar de Nuevo".
-
-
-
-### Fase 5: Ranking (RankingView)
-
-
-
-1. Vista vacía cuando no existen registros previos.
-
-2. Tabla de clasificación con las 10 mejores marcas:
-* Corona de oro para el 1.º lugar, medallas para 2.º y 3.º.
-* Badge "Tú" para resaltar la puntuación obtenida por el usuario actual.
-* Visualización de fecha, % de precisión, puntos y tiempo de desempate.
-
-
-
-3. Mensaje motivacional si el jugador no logró entrar en el Top 10.
-
-4. Botones "Volver al Inicio" y "Jugar Ahora".
-
-
-
-### Fase 6: Pruebas, Verificación y Accesibilidad
-
-
-
-1. Validar que la compilación de TypeScript y el linter no tengan advertencias (npm run type-check y npm run lint).
-
-2. Comprobar el ciclo de vida del audio (que no queden instancias de Howler sonando al cambiar de ruta o reiniciar).
-
-3. Verificar persistencia de rankings reiniciando el navegador o recargando la página.
-
-
-
-
-
-
-
+Proyecto académico desarrollado para la práctica de Entorno Cliente del 2do año de CGS Desarrollo de Aplicaciones Web.
